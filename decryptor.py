@@ -13,15 +13,12 @@ def encrypt(file,key,filetowritename):
 	print('encrypting took %f' %(t1-t0))
 	
 def main():
-	keyfilename = input("Enter name of file with key:")
-	filetocryptname = input("Enter name of file to crypt:")
+	filetocryptname = input("Enter name of cache file to decrypt:")
 
-	keyfile = open(keyfilename,"rb").read()
+	keyfile = open("key","rb").read()
 	cryptedfile = open(filetocryptname,"rb").read()
-	if len(keyfile) > len(cryptedfile):
-		print("Error: key is taller than file");raise SystemExit
 	filetowritename = input("Enter name of file to write: ")
-	print("crypting...")
+	print("decrypting...")
 	encryptedfile = encrypt(cryptedfile, keyfile,filetowritename)
 
 main()
