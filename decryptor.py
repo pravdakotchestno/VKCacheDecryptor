@@ -1,24 +1,17 @@
-from time import time
+def keygen(l):
+	key = b'\x0D\x1E\x2F\x40\x51\x62\x73\x84\x95\xA6\xB7\xC8\xD9\xEA\xFB\x0C'
+	for i in range(15):
+		for j in range(16):
+			key += bytes([(key[(i*16)+j]+16)%256])
+	key *= l//len(key)
+	key += key[:(l-len(key))]
+	return key
 
-def encrypt(file,key,filetowritename):
-	key *= len(file)//len(key)
-	key += key[:(len(file)-len(key))]
-
-	filetowrite = open(filetowritename,"wb")
-
-	t0 = time()
-	for i in range(len(key)):
-		filetowrite.write(bytes([file[i]^key[i]]))
-	t1 = time()
-	print('encrypting took %f' %(t1-t0))
-	
 def main():
-	filetocryptname = input("Enter name of cache file to decrypt:")
-
-	keyfile = open("key","rb").read()
-	cryptedfile = open(filetocryptname,"rb").read()
-	filetowritename = input("Enter name of file to write: ")
-	print("decrypting...")
-	encryptedfile = encrypt(cryptedfile, keyfile,filetowritename)
+	file = open(input("Enter name of cache file to decrypt:"),"rb").read()
+	key = keygen(len(file))
+	filetowrite = open(input("Enter name of file to write: "),"wb")
+	for i in range(len(key)):
+		filetowrite.write(bytes([file[i]^key[i]]))	
 
 main()
