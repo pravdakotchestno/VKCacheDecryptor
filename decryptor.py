@@ -14,4 +14,5 @@ def main():
 	for i in range(len(key)):
 		filetowrite.write(bytes([file[i]^key[i]]))	
 
-main()
+if __name__ == '__main__':
+	main()
