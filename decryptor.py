@@ -10,7 +10,7 @@ if __name__ == '__main__':
 		print('Error: number of outfiles should be equal to number of infiles')
 
 	if args.outfile == None:
-		args.outline = map(lambda x: x + '.mp3', args.infile)
+		args.outfile = map(lambda x: x + '.mp3', args.infile)
 
 	for inf, outf in zip(args.infile, args.outfile):
 		try:
