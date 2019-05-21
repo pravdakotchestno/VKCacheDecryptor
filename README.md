@@ -8,3 +8,6 @@ Tool that extracts mp3 files from VK android app cache.
 ```
 python3 ./decryptor.py -i [FILENAME]
 ```
+3)???
+
+4)PROFIT
